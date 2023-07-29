@@ -1,4 +1,5 @@
 import streamlit as st
+
 st.header("KidCare Privacy Policy")
 
 st.write("Effective Date: 28.07.2023")

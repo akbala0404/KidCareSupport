@@ -1,18 +1,9 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="Multipage App",
+    page_title="KidCare",
     page_icon="👋",
 )
 
-st.title("Main Page")
-st.sidebar.success("Select a page above.")
-
-if "my_input" not in st.session_state:
-    st.session_state["my_input"] = ""
-
-my_input = st.text_input("Input a text here", st.session_state["my_input"])
-submit = st.button("Submit")
-if submit:
-    st.session_state["my_input"] = my_input
-    st.write("You have entered: ", my_input)
+st.title("KidCare")
+st.write("your faithful assistant in parenting! This is a unique application with a powerful AI assistant, created with love and care for the family. Get tips, play interactive games, read fairy tales and facilitate the path to understanding your child's world.")
