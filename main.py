@@ -163,21 +163,57 @@ def section3():
              "You can contact me through the following channel:")
     st.write("**Email:** Send me an email at akbala20042020@mail.ru, and i will get back to you as soon as possible.")
 
-# Main app
+# # Main app
+# def main():
+#     st.title("KidCare")
+#     st.write("your faithful assistant in parenting! This is a unique application with a powerful AI assistant, created with love and care for the family. Get tips, play interactive games, read fairy tales and facilitate the path to understanding your child's world.")
+#     # Add your menu here
+#     menu = ["Privacy Policy", "Terms and Conditions", "Support"]
+#     choice = st.sidebar.selectbox("Select a section", menu)
+
+#     # Conditionally show the selected section
+#     if choice == "Privacy Policy":
+#         section1()
+#     elif choice == "Terms and Conditions":
+#         section2()
+#     elif choice == "Support":
+#         section3()
+
+# if __name__ == "__main__":
+#     main()
 def main():
     st.title("KidCare")
-    st.write("your faithful assistant in parenting! This is a unique application with a powerful AI assistant, created with love and care for the family. Get tips, play interactive games, read fairy tales and facilitate the path to understanding your child's world.")
+    st.write("Your faithful assistant in parenting! This is a unique application with a powerful AI assistant, created with love and care for the family. Get tips, play interactive games, read fairy tales and facilitate the path to understanding your child's world.")
+
+    # Define the URLs for each section
+    section_urls = {
+        'Privacy Policy': '/privacy',
+        'Terms and Conditions': '/terms',
+        'Support': '/support',
+    }
+
+    # Get the current request URL
+    request_url = st.experimental_get_query_params().get('request', ['/'])[0]
+
     # Add your menu here
-    menu = ["Privacy Policy", "Terms and Conditions", "Support"]
+    menu = list(section_urls.keys())
     choice = st.sidebar.selectbox("Select a section", menu)
 
-    # Conditionally show the selected section
-    if choice == "Privacy Policy":
-        section1()
-    elif choice == "Terms and Conditions":
-        section2()
-    elif choice == "Support":
-        section3()
+    # Determine the selected section URL
+    selected_section_url = section_urls.get(choice, '/')
+
+    # Check if the current request URL matches the selected section URL
+    if request_url == selected_section_url:
+        if choice == 'Privacy Policy':
+            section1()
+        elif choice == 'Terms and Conditions':
+            section2()
+        elif choice == 'Support':
+            section3()
+    else:
+        # Show the default content or redirect to the selected section
+        st.experimental_set_query_params(request=selected_section_url)
+        st.experimental_rerun()
 
 if __name__ == "__main__":
     main()
